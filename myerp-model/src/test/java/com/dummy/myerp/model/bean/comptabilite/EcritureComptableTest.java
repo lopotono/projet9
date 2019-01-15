@@ -1,6 +1,11 @@
 package com.dummy.myerp.model.bean.comptabilite;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+
 import java.math.BigDecimal;
+
+import javax.print.attribute.standard.PDLOverrideSupported;
 
 import org.apache.commons.lang3.ObjectUtils;
 import org.junit.Assert;
@@ -43,7 +48,8 @@ public class EcritureComptableTest {
     
     @Test
     public void testTotalDebit() {
-    	
+    	EcritureComptable vEcriture = new EcritureComptable();
+    	vEcriture.getTotalDebit();
     }
 
 }
