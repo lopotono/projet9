@@ -93,6 +93,7 @@ public class EcritureComptableTest {
 		Assert.assertEquals(vLibelle, vEcriture.getLibelle());
 		Assert.assertEquals(vTotalDebit, vEcriture.getTotalDebit());
 		Assert.assertEquals(vTotalCredit, vEcriture.getTotalCredit());
+		Assert.assertEquals(vEcriture.toString(), vEcriture.getListLigneEcriture());
 
 	}
 
