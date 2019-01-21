@@ -1,6 +1,7 @@
 package com.dummy.myerp.model.bean.comptabilite;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 import org.apache.commons.lang3.ObjectUtils;
 import org.junit.Assert;
@@ -64,36 +65,30 @@ public class EcritureComptableTest {
 	@Test
 	public void testToString() {
 		EcritureComptable vEcriture = new EcritureComptable();
-		vEcriture.getId();
-		vEcriture.getJournal();
-		vEcriture.getReference();
-		vEcriture.getDate();
-		vEcriture.getLibelle();
-		vEcriture.getTotalDebit();
-		vEcriture.getTotalCredit();
-		vEcriture.getListLigneEcriture();
-		
-		int vId = -1;
-		String vJournal = "AC";
+			
+		Integer vId = -1;
+		vEcriture.setId(vId);
+		String vJournalCode = "AC";
+		JournalComptable pJournal = new JournalComptable();
+		pJournal.setCode(vJournalCode);
+		vEcriture.setJournal(pJournal);
 		String vReference = "AC-2016/00001";
-		String vDate = "2016-12-31";
+		vEcriture.setReference(vReference);
+		Date vDate = new Date();
+		vEcriture.setDate(vDate);
 		String vLibelle = "Cartouches d’imprimante";
-		BigDecimal vTotalDebit = new BigDecimal("341.00");
-		BigDecimal vTotalCredit = new BigDecimal("341");
-		vEcriture.getListLigneEcriture().add(this.createLigne(1, "200.50", null));
-		vEcriture.getListLigneEcriture().add(this.createLigne(1, "100.50", "33"));
-		vEcriture.getListLigneEcriture().add(this.createLigne(2, null, "301"));
-		vEcriture.getListLigneEcriture().add(this.createLigne(2, "40", "7"));
-
-
-		Assert.assertEquals(vId, (int)vEcriture.getId());
-		Assert.assertEquals(vJournal, vEcriture.getJournal());
+		vEcriture.setLibelle(vLibelle);
+		String toStringResult = "EcritureComptable{id="+vId+", journal="+pJournal+", reference='"+vReference+"', date="+vDate+", libelle='"+vLibelle+"', totalDebit=0, totalCredit=0, listLigneEcriture=[\n" + 
+				"\n" + 
+				"]}";
+		String toStringResult2 = "JournalComptable{code='AC', libelle='null'}";
+				
+		Assert.assertEquals(vId, vEcriture.getId());
+		Assert.assertEquals(toStringResult2, vEcriture.getJournal().toString());
 		Assert.assertEquals(vReference, vEcriture.getReference());
 		Assert.assertEquals(vDate, vEcriture.getDate());
 		Assert.assertEquals(vLibelle, vEcriture.getLibelle());
-		Assert.assertEquals(vTotalDebit, vEcriture.getTotalDebit());
-		Assert.assertEquals(vTotalCredit, vEcriture.getTotalCredit());
-		Assert.assertEquals(vEcriture.toString(), vEcriture.getListLigneEcriture());
+		Assert.assertEquals(vEcriture.toString(), toStringResult);
 
 	}
 
