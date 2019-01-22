@@ -1,5 +1,8 @@
 package com.dummy.myerp.model.bean.comptabilite;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -25,6 +28,12 @@ public class CompteComptableTest {
 	public void testGetByNumero() {
 		CompteComptable vCompte = new CompteComptable();
 		
+		List<Integer> pList = new ArrayList<Integer>();
+		Integer vNumero = 401;
+		vCompte.setNumero(vNumero);
+		pList.add(vNumero);
+		
+		Assert.assertEquals(vNumero, vCompte.getNumero());
 		
 	}
 
