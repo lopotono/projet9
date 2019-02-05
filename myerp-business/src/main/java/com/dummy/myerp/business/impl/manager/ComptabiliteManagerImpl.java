@@ -63,34 +63,34 @@ public class ComptabiliteManagerImpl extends AbstractBusinessManager implements 
     // TODO à tester
     @Override
     public synchronized void addReference(EcritureComptable pEcritureComptable) {
-           	
-    	/*Remonter depuis la persitance la dernière valeur de la séquence du journal pour l'année de l'écriture
+        /*Remonter depuis la persitance la dernière valeur de la séquence du journal pour l'année de l'écriture
         (table sequence_ecriture_comptable)*/
-    	Integer annee = Integer.parseInt(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(pEcritureComptable.getDate()));
-    	String codeJournal = pEcritureComptable.getJournal().getCode();
-    	SequenceEcritureComptable sequenceJournal = getDaoProxy().getComptabiliteDao().getSequenceEcriture(codeJournal, annee);
-    	
+        SimpleDateFormat formatDate = new SimpleDateFormat("yyyy");
+        String annee = formatDate.format(pEcritureComptable.getDate());
+        String codeJournal = pEcritureComptable.getJournal().getCode();
+        SequenceEcritureComptable sequenceJournal = getDaoProxy().getComptabiliteDao().getSequenceEcriture(codeJournal, Integer.valueOf(annee));
+
     	/* * S'il n'y a aucun enregistrement pour le journal pour l'année concernée :
                         1. Utiliser le numéro 1. */
-    	int numero;
-    	if (sequenceJournal == null) {
-    		numero = 1;   		
-    	}
+        int numero;
+        if (sequenceJournal == null) {
+            numero = 1;
+        }
     	/* * Sinon :
             1. Utiliser la dernière valeur + 1 */
-    	else {
-   		  	numero = sequenceJournal.getDerniereValeur()+1;
-   		  	
-    		/* Mettre à jour la référence de l'écriture avec la référence calculée (RG_Compta_5) */
-   		  	String UpdateReference = pEcritureComptable.getJournal().getCode() +"-"+annee+"/"+numero;
-   		  	pEcritureComptable.setReference(UpdateReference);
-   		  	
+        else {
+            numero = sequenceJournal.getDerniereValeur()+1;
+
+            /* Mettre à jour la référence de l'écriture avec la référence calculée (RG_Compta_5) */
+            String UpdateReference = pEcritureComptable.getJournal().getCode() +"-"+annee+"/"+numero;
+            pEcritureComptable.setReference(UpdateReference);
+
     		/* Enregistrer (insert/update) la valeur de la séquence en persitance
                     (table sequence_ecriture_comptable) */
-   		  	getDaoProxy().getComptabiliteDao().updateSequenceEcritureComptable(codeJournal, sequenceJournal);
-    		
-    	}
-    	
+            getDaoProxy().getComptabiliteDao().updateSequenceEcritureComptable(codeJournal, sequenceJournal);
+
+        }
+
     }
 
     /**
@@ -154,11 +154,11 @@ public class ComptabiliteManagerImpl extends AbstractBusinessManager implements 
         SimpleDateFormat formatDate = new SimpleDateFormat("yyyy");
         String refAnnee = formatDate.format(pEcritureComptable.getDate());
         if (!refAnnee.equals(pEcritureComptable.getReference().substring(3,6))) {
-        	throw new FunctionalException("L'année de la référence ne correspond pas à la date de l'écriture.");
+            throw new FunctionalException("L'année de la référence ne correspond pas à la date de l'écriture.");
         }
-        
-        if(!pEcritureComptable.getJournal().getCode().equals(pEcritureComptable.getReference())) {
-        	throw new FunctionalException("Le code journal ne correspond pas au code journal de la référence.");
+
+        if (!pEcritureComptable.getJournal().getCode().equals(pEcritureComptable.getReference())) {
+            throw new FunctionalException("Le code journal ne correspond pas au code journal de la référence.");
         }
     }
 
