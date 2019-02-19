@@ -1,6 +1,7 @@
 package com.dummy.myerp.testbusiness.business;
 
 import java.math.BigDecimal;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
@@ -11,40 +12,39 @@ import com.dummy.myerp.model.bean.comptabilite.CompteComptable;
 import com.dummy.myerp.model.bean.comptabilite.EcritureComptable;
 import com.dummy.myerp.model.bean.comptabilite.JournalComptable;
 import com.dummy.myerp.model.bean.comptabilite.LigneEcritureComptable;
-import com.dummy.myerp.model.bean.comptabilite.SequenceEcritureComptable;
+import com.dummy.myerp.technical.exception.FunctionalException;
 
 public class ComptabiliteManagerIntegrationTest extends BusinessTestCase {
 
 	@Test
 	public void addReferenceTest() throws Exception {
-		EcritureComptable vEcritureComptable;
-		vEcritureComptable = new EcritureComptable();
-		vEcritureComptable.setId(-1);
-		vEcritureComptable.setJournal(new JournalComptable("AC", "Achat"));
-		SimpleDateFormat formatDate = new SimpleDateFormat("2016");
-		vEcritureComptable.setDate(formatDate.parse("2016"));
-		vEcritureComptable.setLibelle("Cartouches d’imprimante");
-		SequenceEcritureComptable vSequenceComptable;
-		vSequenceComptable = new SequenceEcritureComptable();
-		vSequenceComptable.setDerniereValeur(40);
-		int numero;
-		numero = vSequenceComptable.getDerniereValeur() + 1;
-		String updateReference = vEcritureComptable.getJournal().getCode() + "-" + 2016 + "/"
-				+ String.format("%05d", numero);
+		EcritureComptable vEcritureComptable = getBusinessProxy().getComptabiliteManager().getEcritureComptable(-1);
+		/*
+		 * vEcritureComptable = new EcritureComptable(); vEcritureComptable.setId(-1);
+		 * vEcritureComptable.setJournal(new JournalComptable("AC", "Achat"));
+		 * SimpleDateFormat formatDate = new SimpleDateFormat("2016");
+		 * vEcritureComptable.setDate(formatDate.parse("2016"));
+		 * vEcritureComptable.setLibelle("Cartouches d’imprimante");
+		 * SequenceEcritureComptable vSequenceComptable; vSequenceComptable = new
+		 * SequenceEcritureComptable(); vSequenceComptable.setDerniereValeur(40); int
+		 * numero; numero = vSequenceComptable.getDerniereValeur() + 1; String
+		 * updateReference = vEcritureComptable.getJournal().getCode() + "-" + 2016 +
+		 * "/" + String.format("%05d", numero);
+		 */
 		getBusinessProxy().getComptabiliteManager().addReference(vEcritureComptable);
-		vEcritureComptable.setReference(updateReference);
+
 		Assert.assertEquals("AC-2016/00041", vEcritureComptable.getReference());
 	}
 
 	@Test
-	public void checkEcritureComptable() throws Exception {
+	public void checkEcritureComptable() throws FunctionalException, ParseException {
 		EcritureComptable vEcritureComptable;
 		vEcritureComptable = new EcritureComptable();
-		vEcritureComptable.setId(-2);
 		vEcritureComptable.setJournal(new JournalComptable("VE", "Vente"));
-		vEcritureComptable.setReference("VE-2016/00002");
-		SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		vEcritureComptable.setDate(formatDate.parse("2016-12-31 00:00:00"));
+		SimpleDateFormat formatDate = new SimpleDateFormat("yyyy");
+		String annee = formatDate.format(vEcritureComptable.getDate());
+		vEcritureComptable.setDate(formatDate.parse(annee));
+		vEcritureComptable.setReference("VE-"+annee+"/00002");
 		vEcritureComptable.setLibelle("TMA Appli Xxx");
 		vEcritureComptable.getListLigneEcriture()
 				.add(new LigneEcritureComptable(new CompteComptable(1), null, new BigDecimal(52), null));
@@ -52,6 +52,41 @@ public class ComptabiliteManagerIntegrationTest extends BusinessTestCase {
 				.add(new LigneEcritureComptable(new CompteComptable(2), null, null, new BigDecimal(52)));
 		getBusinessProxy().getComptabiliteManager().checkEcritureComptable(vEcritureComptable);
 
+	}
+
+	@Test
+	public void insertEcritureComptable() throws FunctionalException, ParseException {
+		EcritureComptable vEcritureComptable;
+		vEcritureComptable = new EcritureComptable();
+		vEcritureComptable.setJournal(new JournalComptable("BQ", "Banque"));;
+		SimpleDateFormat formatDate = new SimpleDateFormat("yyyy");
+		String annee = formatDate.format(vEcritureComptable.getDate());
+		vEcritureComptable.setDate(formatDate.parse(annee));
+		vEcritureComptable.setReference(vEcritureComptable.getJournal().getCode() + "-" + annee + "/00003");
+		vEcritureComptable.setLibelle("Paiement Facture F110001");
+		vEcritureComptable.getListLigneEcriture()
+				.add(new LigneEcritureComptable(new CompteComptable(401), null, new BigDecimal(52), null));
+		vEcritureComptable.getListLigneEcriture()
+				.add(new LigneEcritureComptable(new CompteComptable(512), null, null, new BigDecimal(52)));
+		getBusinessProxy().getComptabiliteManager().insertEcritureComptable(vEcritureComptable);
+		Assert.assertNotNull(vEcritureComptable.getId());
+	}
+
+	@Test
+	public void updateEcritureComptable() throws FunctionalException, ParseException {
+		List<EcritureComptable> list = getBusinessProxy().getComptabiliteManager().getListEcritureComptable();
+		for (EcritureComptable vEcritureComptable : list) {
+			if (vEcritureComptable.getId() == -3) {
+				vEcritureComptable.setLibelle("Paiement Facture F110001");
+				getBusinessProxy().getComptabiliteManager().updateEcritureComptable(vEcritureComptable);
+				Assert.assertEquals("Paiement Facture F110001", vEcritureComptable.getLibelle());
+			}
+		}
+	}
+
+	@Test
+	public void deleteEcritureComptable() {
+		getBusinessProxy().getComptabiliteManager().deleteEcritureComptable(-3);
 	}
 
 	@Test
@@ -72,7 +107,7 @@ public class ComptabiliteManagerIntegrationTest extends BusinessTestCase {
 	public void getListEcritureComptable() throws Exception {
 		List<EcritureComptable> ecritureComptableList = getBusinessProxy().getComptabiliteManager()
 				.getListEcritureComptable();
-		Assert.assertEquals(5, ecritureComptableList.size());
+		Assert.assertEquals(4, ecritureComptableList.size());
 	}
 
 }
