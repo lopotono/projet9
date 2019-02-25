@@ -1,0 +1,15 @@
+/home/fred/Téléchargements/projet_B4_FR/src/myerp-consumer/src/main/java/com/dummy/myerp/consumer/dao/impl/db/rowmapper/comptabilite/LigneEcritureComptableRM.java
+/home/fred/Téléchargements/projet_B4_FR/src/myerp-consumer/src/main/java/com/dummy/myerp/consumer/ConsumerHelper.java
+/home/fred/Téléchargements/projet_B4_FR/src/myerp-consumer/src/main/java/com/dummy/myerp/consumer/dao/impl/db/rowmapper/comptabilite/JournalComptableRM.java
+/home/fred/Téléchargements/projet_B4_FR/src/myerp-consumer/src/main/java/com/dummy/myerp/consumer/dao/impl/db/dao/ComptabiliteDaoImpl.java
+/home/fred/Téléchargements/projet_B4_FR/src/myerp-consumer/src/main/java/com/dummy/myerp/consumer/dao/impl/cache/JournalComptableDaoCache.java
+/home/fred/Téléchargements/projet_B4_FR/src/myerp-consumer/src/main/java/com/dummy/myerp/consumer/db/AbstractDbConsumer.java
+/home/fred/Téléchargements/projet_B4_FR/src/myerp-consumer/src/main/java/com/dummy/myerp/consumer/dao/contrat/ComptabiliteDao.java
+/home/fred/Téléchargements/projet_B4_FR/src/myerp-consumer/src/main/java/com/dummy/myerp/consumer/dao/contrat/DaoProxy.java
+/home/fred/Téléchargements/projet_B4_FR/src/myerp-consumer/src/main/java/com/dummy/myerp/consumer/db/helper/ResultSetHelper.java
+/home/fred/Téléchargements/projet_B4_FR/src/myerp-consumer/src/main/java/com/dummy/myerp/consumer/dao/impl/db/rowmapper/comptabilite/EcritureComptableRM.java
+/home/fred/Téléchargements/projet_B4_FR/src/myerp-consumer/src/main/java/com/dummy/myerp/consumer/dao/impl/db/rowmapper/comptabilite/CompteComptableRM.java
+/home/fred/Téléchargements/projet_B4_FR/src/myerp-consumer/src/main/java/com/dummy/myerp/consumer/db/DataSourcesEnum.java
+/home/fred/Téléchargements/projet_B4_FR/src/myerp-consumer/src/main/java/com/dummy/myerp/consumer/dao/impl/DaoProxyImpl.java
+/home/fred/Téléchargements/projet_B4_FR/src/myerp-consumer/src/main/java/com/dummy/myerp/consumer/dao/impl/cache/CompteComptableDaoCache.java
+/home/fred/Téléchargements/projet_B4_FR/src/myerp-consumer/src/main/java/com/dummy/myerp/consumer/dao/impl/db/rowmapper/comptabilite/SequenceEcritureComptableRM.java
