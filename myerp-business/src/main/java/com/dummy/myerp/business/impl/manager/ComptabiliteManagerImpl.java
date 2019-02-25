@@ -57,20 +57,22 @@ public class ComptabiliteManagerImpl extends AbstractBusinessManager implements 
 
 	/**
 	 * {@inheritDoc}
+	 * @throws NotFoundException 
+	 * @throws NumberFormatException 
 	 */
 	// TODO à tester
 	@Override
-	public synchronized void addReference(EcritureComptable pEcritureComptable) {
+	public synchronized void addReference(EcritureComptable pEcritureComptable) throws FunctionalException, NumberFormatException, NotFoundException {
 		/*
 		 * Remonter depuis la persitance la dernière valeur de la séquence du journal
 		 * pour l'année de l'écriture (table sequence_ecriture_comptable)
 		 */
-		SimpleDateFormat formatDate = new SimpleDateFormat("yyyy");
-		String annee = formatDate.format(pEcritureComptable.getDate());
+		Integer annee = Integer.parseInt(new SimpleDateFormat("yyyy").format(pEcritureComptable.getDate()));
 		String codeJournal = pEcritureComptable.getJournal().getCode();
-		SequenceEcritureComptable sequenceJournal = getDaoProxy().getComptabiliteDao().getSequenceEcriture(codeJournal,
-				Integer.valueOf(annee));
-
+		System.out.println(annee);
+		System.out.println(codeJournal);
+		SequenceEcritureComptable sequenceJournal = getDaoProxy().getComptabiliteDao().getSequenceEcriture(codeJournal, annee);
+		System.out.println(sequenceJournal.getDerniereValeur());
 		/*
 		 * * S'il n'y a aucun enregistrement pour le journal pour l'année concernée : 1.
 		 * Utiliser le numéro 1.
@@ -167,11 +169,11 @@ public class ComptabiliteManagerImpl extends AbstractBusinessManager implements 
 		// l'écriture, idem pour le code journal...
 		SimpleDateFormat formatDate = new SimpleDateFormat("yyyy");
 		String refAnnee = formatDate.format(pEcritureComptable.getDate());
-		if (!refAnnee.equals(pEcritureComptable.getReference().substring(3, 6))) {
+		if (!refAnnee.equals(pEcritureComptable.getReference().substring(3, 7))) {
 			throw new FunctionalException("L'année de la référence ne correspond pas à la date de l'écriture.");
 		}
 
-		if (!pEcritureComptable.getJournal().getCode().equals(pEcritureComptable.getReference())) {
+		if (!pEcritureComptable.getJournal().getCode().equals(pEcritureComptable.getReference().substring(0, 2))) {
 			throw new FunctionalException("Le code journal ne correspond pas au code journal de la référence.");
 		}
 	}
@@ -250,5 +252,10 @@ public class ComptabiliteManagerImpl extends AbstractBusinessManager implements 
 		} finally {
 			getTransactionManager().rollbackMyERP(vTS);
 		}
+	}
+
+	@Override
+	public EcritureComptable getEcritureComptable(Integer pId) throws NotFoundException {
+		return getDaoProxy().getComptabiliteDao().getEcritureComptable(pId);
 	}
 }
