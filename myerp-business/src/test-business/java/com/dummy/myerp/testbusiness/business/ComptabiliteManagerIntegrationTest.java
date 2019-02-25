@@ -3,6 +3,7 @@ package com.dummy.myerp.testbusiness.business;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.junit.Assert;
@@ -15,7 +16,7 @@ import com.dummy.myerp.model.bean.comptabilite.LigneEcritureComptable;
 import com.dummy.myerp.technical.exception.FunctionalException;
 
 public class ComptabiliteManagerIntegrationTest extends BusinessTestCase {
-
+			
 	@Test
 	public void addReferenceTest() throws Exception {
 		EcritureComptable vEcritureComptable = getBusinessProxy().getComptabiliteManager().getEcritureComptable(-1);
@@ -37,13 +38,14 @@ public class ComptabiliteManagerIntegrationTest extends BusinessTestCase {
 	}
 
 	@Test
-	public void checkEcritureComptable() throws FunctionalException, ParseException {
+	public void checkEcritureComptable() throws FunctionalException {
 		EcritureComptable vEcritureComptable;
 		vEcritureComptable = new EcritureComptable();
 		vEcritureComptable.setJournal(new JournalComptable("VE", "Vente"));
+		Date date = new Date();
+		vEcritureComptable.setDate(date);
 		SimpleDateFormat formatDate = new SimpleDateFormat("yyyy");
 		String annee = formatDate.format(vEcritureComptable.getDate());
-		vEcritureComptable.setDate(formatDate.parse(annee));
 		vEcritureComptable.setReference("VE-"+annee+"/00002");
 		vEcritureComptable.setLibelle("TMA Appli Xxx");
 		vEcritureComptable.getListLigneEcriture()
@@ -53,21 +55,20 @@ public class ComptabiliteManagerIntegrationTest extends BusinessTestCase {
 		getBusinessProxy().getComptabiliteManager().checkEcritureComptable(vEcritureComptable);
 
 	}
-
+	
 	@Test
 	public void insertEcritureComptable() throws FunctionalException, ParseException {
 		EcritureComptable vEcritureComptable;
 		vEcritureComptable = new EcritureComptable();
-		vEcritureComptable.setJournal(new JournalComptable("BQ", "Banque"));;
-		SimpleDateFormat formatDate = new SimpleDateFormat("yyyy");
-		String annee = formatDate.format(vEcritureComptable.getDate());
-		vEcritureComptable.setDate(formatDate.parse(annee));
-		vEcritureComptable.setReference(vEcritureComptable.getJournal().getCode() + "-" + annee + "/00003");
-		vEcritureComptable.setLibelle("Paiement Facture F110001");
+		vEcritureComptable.setJournal(new JournalComptable("AC", "Achat"));;
+		SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		vEcritureComptable.setDate(formatDate.parse("2016-12-31 00:00:00"));
+		vEcritureComptable.setReference("AC" + "-" + 2016 + "/00002");
+		vEcritureComptable.setLibelle("Cartouches d’imprimante");
 		vEcritureComptable.getListLigneEcriture()
-				.add(new LigneEcritureComptable(new CompteComptable(401), null, new BigDecimal(52), null));
+				.add(new LigneEcritureComptable(new CompteComptable(606), null, new BigDecimal(52), null));
 		vEcritureComptable.getListLigneEcriture()
-				.add(new LigneEcritureComptable(new CompteComptable(512), null, null, new BigDecimal(52)));
+				.add(new LigneEcritureComptable(new CompteComptable(401), null, null, new BigDecimal(52)));
 		getBusinessProxy().getComptabiliteManager().insertEcritureComptable(vEcritureComptable);
 		Assert.assertNotNull(vEcritureComptable.getId());
 	}
