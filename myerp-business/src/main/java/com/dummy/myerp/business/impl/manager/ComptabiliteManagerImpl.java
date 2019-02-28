@@ -69,10 +69,7 @@ public class ComptabiliteManagerImpl extends AbstractBusinessManager implements 
 		 */
 		Integer annee = Integer.parseInt(new SimpleDateFormat("yyyy").format(pEcritureComptable.getDate()));
 		String codeJournal = pEcritureComptable.getJournal().getCode();
-		System.out.println(annee);
-		System.out.println(codeJournal);
 		SequenceEcritureComptable sequenceJournal = getDaoProxy().getComptabiliteDao().getSequenceEcriture(codeJournal, annee);
-		System.out.println(sequenceJournal.getDerniereValeur());
 		/*
 		 * * S'il n'y a aucun enregistrement pour le journal pour l'année concernée : 1.
 		 * Utiliser le numéro 1.
