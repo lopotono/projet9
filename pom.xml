@@ -164,33 +164,24 @@
 						<artifactId>jacoco-maven-plugin</artifactId>
 						<version>${jacoco.version}</version>
 						<executions>
-							<!-- Prepares a variable, jacoco.agent.ut.arg, that contains the info 
-								to be passed to the JVM hosting the code being tested. -->
 							<execution>
-								<id>prepare-ut-agent</id>
-								<phase>process-test-classes</phase>
+								<id>jacoco-instrument</id>
 								<goals>
-									<goal>prepare-agent</goal>
+									<goal>instrument</goal>
 								</goals>
-								<configuration>
-									<destFile>${sonar.jacoco.reportPath}</destFile>
-									<propertyName>jacoco.agent.ut.arg</propertyName>
-									<append>true</append>
-								</configuration>
 							</execution>
-							<!-- Prepares a variable, jacoco.agent.it.arg, that contains the info 
-								to be passed to the JVM hosting the code being tested. -->
 							<execution>
-								<id>prepare-it-agent</id>
-								<phase>pre-integration-test</phase>
+								<id>jacoco-restore-instrumented-classes</id>
 								<goals>
-									<goal>prepare-agent</goal>
+									<goal>restore-instrumented-classes</goal>
 								</goals>
-								<configuration>
-									<destFile>${sonar.jacoco.itReportPath}</destFile>
-									<propertyName>jacoco.agent.it.arg</propertyName>
-									<append>true</append>
-								</configuration>
+							</execution>
+							<execution>
+								<id>jacoco-report</id>
+								<phase>package</phase>
+								<goals>
+									<goal>report</goal>
+								</goals>
 							</execution>
 						</executions>
 					</plugin>
