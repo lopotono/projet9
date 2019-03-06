@@ -20,20 +20,7 @@ public class ComptabiliteManagerIntegrationTest extends BusinessTestCase {
 	@Test
 	public void addReferenceTest() throws Exception {
 		EcritureComptable vEcritureComptable = getBusinessProxy().getComptabiliteManager().getEcritureComptable(-1);
-		/*
-		 * vEcritureComptable = new EcritureComptable(); vEcritureComptable.setId(-1);
-		 * vEcritureComptable.setJournal(new JournalComptable("AC", "Achat"));
-		 * SimpleDateFormat formatDate = new SimpleDateFormat("2016");
-		 * vEcritureComptable.setDate(formatDate.parse("2016"));
-		 * vEcritureComptable.setLibelle("Cartouches d’imprimante");
-		 * SequenceEcritureComptable vSequenceComptable; vSequenceComptable = new
-		 * SequenceEcritureComptable(); vSequenceComptable.setDerniereValeur(40); int
-		 * numero; numero = vSequenceComptable.getDerniereValeur() + 1; String
-		 * updateReference = vEcritureComptable.getJournal().getCode() + "-" + 2016 +
-		 * "/" + String.format("%05d", numero);
-		 */
 		getBusinessProxy().getComptabiliteManager().addReference(vEcritureComptable);
-
 		Assert.assertEquals("AC-2016/00041", vEcritureComptable.getReference());
 	}
 
