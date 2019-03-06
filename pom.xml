@@ -134,7 +134,7 @@
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-surefire-plugin</artifactId>
 						<configuration>
-							<argLine>${jacoco.agent.ut.arg}</argLine>
+							<argLine>-javaagent:${jacoco.agent.path}=destfile=${jacoco.file.path}</argLine>
 							<!-- Specific to generate mapping between tests and covered code -->
 							<properties>
 								<property>
