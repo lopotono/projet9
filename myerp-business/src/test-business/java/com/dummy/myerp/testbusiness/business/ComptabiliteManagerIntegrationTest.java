@@ -50,7 +50,7 @@ public class ComptabiliteManagerIntegrationTest extends BusinessTestCase {
 		vEcritureComptable.setJournal(new JournalComptable("AC", "Achat"));;
 		SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		vEcritureComptable.setDate(formatDate.parse("2016-12-31 00:00:00"));
-		vEcritureComptable.setReference("AC" + "-" + 2016 + "/00007");
+		vEcritureComptable.setReference("AC" + "-" + 2016 + "/00008");
 		vEcritureComptable.setLibelle("Cartouches d’imprimante");
 		vEcritureComptable.getListLigneEcriture()
 				.add(new LigneEcritureComptable(new CompteComptable(606), null, new BigDecimal(52), null));
@@ -95,7 +95,7 @@ public class ComptabiliteManagerIntegrationTest extends BusinessTestCase {
 	public void getListEcritureComptable() throws Exception {
 		List<EcritureComptable> ecritureComptableList = getBusinessProxy().getComptabiliteManager()
 				.getListEcritureComptable();
-		Assert.assertEquals(9, ecritureComptableList.size());
+		Assert.assertEquals(10, ecritureComptableList.size());
 	}
 
 }
