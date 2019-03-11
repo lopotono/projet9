@@ -101,7 +101,7 @@
                                 </goals>
                                 <configuration>
                                     <sources>
-                                        <source>src/test-consumer/java</source>
+                                        <source>src/test-consumer</source>
                                     </sources>
                                 </configuration>
                             </execution>
