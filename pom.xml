@@ -56,19 +56,15 @@
 		<spring.version>4.3.7.RELEASE</spring.version>
 
 		<!-- ===== Sonar properties =====> -->
-		<sonar.projectKey>myerp</sonar.projectKey>
-		<sonar.projectName>myerp</sonar.projectName>
-		<sonar.projectVersion>${yearMonth}</sonar.projectVersion>
 		<sonar.language>java</sonar.language>
 		<sonar.sourceEncoding>UTF-8</sonar.sourceEncoding>
 		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
 		<jacoco.version>0.7.2.201409121644</jacoco.version>
 		<sonar-jacoco-listeners.version>1.4</sonar-jacoco-listeners.version>
-		<jacoco.outputDir>${project.build.directory}</jacoco.outputDir>
-		<jacoco.out.ut.file>jacoco-ut.exec</jacoco.out.ut.file>
-		<sonar.jacoco.reportPath>${jacoco.outputDir}/${jacoco.out.ut.file}</sonar.jacoco.reportPath>
-		<jacoco.out.it.file>jacoco-it.exec</jacoco.out.it.file>
-		<sonar.jacoco.itReportPath>${jacoco.outputDir}/${jacoco.out.it.file}</sonar.jacoco.itReportPath>
+		<sonar.sources>src/main</sonar.sources>
+        <sonar.tests>src/test</sonar.tests>
+        <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+		<sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
 
 	</properties>
 
