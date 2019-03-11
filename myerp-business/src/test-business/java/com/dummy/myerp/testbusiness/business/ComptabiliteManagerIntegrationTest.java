@@ -95,7 +95,7 @@ public class ComptabiliteManagerIntegrationTest extends BusinessTestCase {
 	public void getListEcritureComptable() throws Exception {
 		List<EcritureComptable> ecritureComptableList = getBusinessProxy().getComptabiliteManager()
 				.getListEcritureComptable();
-		Assert.assertEquals(11, ecritureComptableList.size());
+		Assert.assertEquals(4, ecritureComptableList.size());
 	}
 
 }
