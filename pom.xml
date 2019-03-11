@@ -61,8 +61,8 @@
 		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
 		<jacoco.version>0.7.2.201409121644</jacoco.version>
 		<sonar-jacoco-listeners.version>1.4</sonar-jacoco-listeners.version>
-		<sonar.sources>src/main</sonar.sources>
-        <sonar.tests>src/test</sonar.tests>
+		<!--  <sonar.sources>src/main</sonar.sources> -->
+        <!--  <sonar.tests>src/test</sonar.tests> -->
         <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
 		<sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
 
