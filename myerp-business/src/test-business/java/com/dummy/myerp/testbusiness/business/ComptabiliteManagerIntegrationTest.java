@@ -74,12 +74,13 @@ public class ComptabiliteManagerIntegrationTest extends BusinessTestCase {
 		EcritureComptable vEcritureComptable;
 		vEcritureComptable = new EcritureComptable();
 		vEcritureComptable.setJournal(new JournalComptable("AC", "Achat"));
-		vEcritureComptable.setDate(new Date());
+		Date date = new Date();
+		vEcritureComptable.setDate(date);
 		vEcritureComptable.setLibelle("Cartouches d’imprimante");
 		vEcritureComptable.getListLigneEcriture()
-				.add(new LigneEcritureComptable(new CompteComptable(1), null, new BigDecimal(3000), null));
+				.add(new LigneEcritureComptable(new CompteComptable(1), null, new BigDecimal(123), null));
 		vEcritureComptable.getListLigneEcriture()
-				.add(new LigneEcritureComptable(new CompteComptable(2), null, null, new BigDecimal(3000)));
+				.add(new LigneEcritureComptable(new CompteComptable(2), null, null, new BigDecimal(1234)));
 		getBusinessProxy().getComptabiliteManager().checkEcritureComptableUnit(vEcritureComptable);
 	}
 	
@@ -88,13 +89,14 @@ public class ComptabiliteManagerIntegrationTest extends BusinessTestCase {
         EcritureComptable vEcritureComptable;
         vEcritureComptable = new EcritureComptable();
         vEcritureComptable.setJournal(new JournalComptable("AC", "Achat"));
-        vEcritureComptable.setDate(new Date());
+        Date date = new Date();
+		vEcritureComptable.setDate(date);
         vEcritureComptable.setLibelle("Cartouches d’imprimante");
         vEcritureComptable.getListLigneEcriture().add(new LigneEcritureComptable(new CompteComptable(1),
-                                                                                 null, new BigDecimal(123),
+                                                                                 null, null,
                                                                                  null));
         vEcritureComptable.getListLigneEcriture().add(new LigneEcritureComptable(new CompteComptable(1),
-                                                                                 null, new BigDecimal(123),
+                                                                                 null, null,
                                                                                  null));
         getBusinessProxy().getComptabiliteManager().checkEcritureComptableUnit(vEcritureComptable);
     }
