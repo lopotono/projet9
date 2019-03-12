@@ -88,5 +88,7 @@ public interface ComptabiliteManager {
     void deleteEcritureComptable(Integer pId);
     
     EcritureComptable getEcritureComptable(Integer pId) throws NotFoundException;
+    
+    void checkEcritureComptableContext(EcritureComptable pEcritureComptable) throws FunctionalException;
   
 }
