@@ -15,9 +15,8 @@ import com.dummy.myerp.technical.exception.FunctionalException;
 public class ComptabiliteManagerImplTest {
 
     private ComptabiliteManagerImpl manager = new ComptabiliteManagerImpl();
-    private String annee;
 
-    /*@Test
+    @Test
     public void checkEcritureComptableUnit() throws Exception {
         EcritureComptable vEcritureComptable;
         vEcritureComptable = new EcritureComptable();
@@ -34,7 +33,7 @@ public class ComptabiliteManagerImplTest {
                                                                                  null, null,
                                                                                  new BigDecimal(123)));
         manager.checkEcritureComptableUnit(vEcritureComptable);
-    }*/
+    }
 
     @Test(expected = FunctionalException.class)
     public void checkEcritureComptableUnitViolation() throws Exception {
@@ -74,5 +73,4 @@ public class ComptabiliteManagerImplTest {
                                                                                  null));
         manager.checkEcritureComptableUnit(vEcritureComptable);
     }
-
 }
