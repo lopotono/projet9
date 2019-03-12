@@ -55,6 +55,7 @@ public class ComptabiliteDaoIntegrationTest extends ConsumerTestCase {
 		EcritureComptable vEcritureComptable;
 		vEcritureComptable = new EcritureComptable();
 		vEcritureComptable = getDaoProxy().getComptabiliteDao().getEcritureComptableByRef("AC-2016/00001");
+		Assert.assertEquals(-1, (int)vEcritureComptable.getId());
 		Assert.assertEquals("AC", vEcritureComptable.getJournal().getCode());
 	}
 
