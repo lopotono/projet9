@@ -44,6 +44,24 @@ public class ComptabiliteManagerIntegrationTest extends BusinessTestCase {
 	}
 
 	@Test
+	public void checkEcritureComptableUnit() throws FunctionalException {
+		EcritureComptable vEcritureComptable;
+		vEcritureComptable = new EcritureComptable();
+		vEcritureComptable.setJournal(new JournalComptable("AC", "Achat"));
+		Date date = new Date();
+		vEcritureComptable.setDate(date);
+		vEcritureComptable.setLibelle("Libelle");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
+		String annee = sdf.format(vEcritureComptable.getDate());
+		vEcritureComptable.setReference(vEcritureComptable.getJournal().getCode() + "-" + annee + "/00001");
+		vEcritureComptable.getListLigneEcriture()
+				.add(new LigneEcritureComptable(new CompteComptable(1), null, new BigDecimal(123), null));
+		vEcritureComptable.getListLigneEcriture()
+				.add(new LigneEcritureComptable(new CompteComptable(2), null, null, new BigDecimal(123)));
+		getBusinessProxy().getComptabiliteManager().checkEcritureComptableUnit(vEcritureComptable);
+	}
+
+	@Test
 	public void checkEcritureComptableContext() throws FunctionalException {
 		EcritureComptable vEcritureComptable;
 		vEcritureComptable = new EcritureComptable();
