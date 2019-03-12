@@ -90,5 +90,6 @@ public interface ComptabiliteManager {
     EcritureComptable getEcritureComptable(Integer pId) throws NotFoundException;
     
     void checkEcritureComptableContext(EcritureComptable pEcritureComptable) throws FunctionalException;
-  
+
+	void checkEcritureComptableUnit(EcritureComptable vEcritureComptable) throws FunctionalException; 
 }
