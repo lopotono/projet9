@@ -2,6 +2,7 @@ package com.dummy.myerp.testconsumer.consumer;
 
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.junit.Assert;
@@ -32,7 +33,7 @@ public class ComptabiliteDaoIntegrationTest extends ConsumerTestCase {
 	@Test
 	public void getListEcritureComptable() throws Exception {
 		List<EcritureComptable> ecritureComptableList = getDaoProxy().getComptabiliteDao().getListEcritureComptable();
-		Assert.assertEquals(5, ecritureComptableList.size());
+		Assert.assertEquals(4, ecritureComptableList.size());
 
 	}
 
@@ -40,27 +41,28 @@ public class ComptabiliteDaoIntegrationTest extends ConsumerTestCase {
 	public void getEcritureComptable() throws Exception {
 		EcritureComptable vEcritureComptable;
 		vEcritureComptable = new EcritureComptable();
-		vEcritureComptable.setId(-1);
-		Integer vId = -1;
-		getDaoProxy().getComptabiliteDao().getEcritureComptable(vId);
-		Assert.assertEquals(vId, vEcritureComptable.getId());
+		vEcritureComptable = getDaoProxy().getComptabiliteDao().getEcritureComptable(-2);
+		Assert.assertEquals("VE", vEcritureComptable.getJournal().getCode());
+		Assert.assertEquals("VE-2016/00002", vEcritureComptable.getReference());
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = dateFormat.parse("2016-12-30");
+		Assert.assertEquals(date, vEcritureComptable.getDate());
+		Assert.assertEquals("TMA Appli Xxx", vEcritureComptable.getLibelle());
 	}
 
 	@Test
 	public void getEcritureComptableByRef() throws Exception {
 		EcritureComptable vEcritureComptable;
 		vEcritureComptable = new EcritureComptable();
-		vEcritureComptable.setReference("AC-2016/00001");
-		String vReference = "AC-2016/00001";
-		getDaoProxy().getComptabiliteDao().getEcritureComptableByRef(vReference);
-		Assert.assertEquals(vReference, vEcritureComptable.getReference());
+		vEcritureComptable = getDaoProxy().getComptabiliteDao().getEcritureComptableByRef("AC-2016/00001");
+		Assert.assertEquals("AC", vEcritureComptable.getJournal().getCode());
 	}
 
 	@Test
 	public void loadListLigneEcriture() throws Exception {
 		EcritureComptable vEcritureComptable;
 		vEcritureComptable = new EcritureComptable();
-		vEcritureComptable.setId(-1);
+		vEcritureComptable.setId(-2);
 		getDaoProxy().getComptabiliteDao().loadListLigneEcriture(vEcritureComptable);
 		Assert.assertEquals(3, vEcritureComptable.getListLigneEcriture().size());
 
