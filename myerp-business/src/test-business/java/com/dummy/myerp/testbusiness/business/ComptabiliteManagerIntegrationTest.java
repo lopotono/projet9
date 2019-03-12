@@ -21,7 +21,7 @@ public class ComptabiliteManagerIntegrationTest extends BusinessTestCase {
 	public void addReferenceTest() throws Exception {
 		EcritureComptable vEcritureComptable = getBusinessProxy().getComptabiliteManager().getEcritureComptable(-2);
 		getBusinessProxy().getComptabiliteManager().addReference(vEcritureComptable);
-		Assert.assertEquals("VE-2016/00002", vEcritureComptable.getReference());
+		Assert.assertEquals("VE-2016/00042", vEcritureComptable.getReference());
 	}
 
 	@Test
