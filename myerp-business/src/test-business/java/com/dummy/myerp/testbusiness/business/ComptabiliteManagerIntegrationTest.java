@@ -16,7 +16,7 @@ import com.dummy.myerp.model.bean.comptabilite.LigneEcritureComptable;
 import com.dummy.myerp.technical.exception.FunctionalException;
 
 public class ComptabiliteManagerIntegrationTest extends BusinessTestCase {
-			
+
 	@Test
 	public void addReferenceTest() throws Exception {
 		EcritureComptable vEcritureComptable = getBusinessProxy().getComptabiliteManager().getEcritureComptable(-2);
@@ -33,7 +33,7 @@ public class ComptabiliteManagerIntegrationTest extends BusinessTestCase {
 		vEcritureComptable.setDate(date);
 		SimpleDateFormat formatDate = new SimpleDateFormat("yyyy");
 		String annee = formatDate.format(vEcritureComptable.getDate());
-		vEcritureComptable.setReference("VE-"+annee+"/00002");
+		vEcritureComptable.setReference("VE-" + annee + "/00002");
 		vEcritureComptable.setLibelle("TMA Appli Xxx");
 		vEcritureComptable.getListLigneEcriture()
 				.add(new LigneEcritureComptable(new CompteComptable(1), null, new BigDecimal(52), null));
@@ -42,7 +42,15 @@ public class ComptabiliteManagerIntegrationTest extends BusinessTestCase {
 		getBusinessProxy().getComptabiliteManager().checkEcritureComptable(vEcritureComptable);
 
 	}
-	
+
+	@Test
+	public void checkEcritureComptableContext() throws FunctionalException {
+		EcritureComptable vEcritureComptable;
+		vEcritureComptable = new EcritureComptable();
+		vEcritureComptable.setReference("VE-2016/00001");
+		getBusinessProxy().getComptabiliteManager().checkEcritureComptableContext(vEcritureComptable);
+	}
+
 	@Test
 	public void insertEcritureComptable() throws FunctionalException, ParseException {
 		EcritureComptable vEcritureComptable;
@@ -72,7 +80,7 @@ public class ComptabiliteManagerIntegrationTest extends BusinessTestCase {
 		}
 	}
 
-	@Test	
+	@Test
 	public void deleteEcritureComptable() {
 		getBusinessProxy().getComptabiliteManager().deleteEcritureComptable(-3);
 	}
