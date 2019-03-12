@@ -73,13 +73,13 @@ public class ComptabiliteManagerIntegrationTest extends BusinessTestCase {
 	public void checkEcritureComptableUnitRG2() throws FunctionalException {
 		EcritureComptable vEcritureComptable;
 		vEcritureComptable = new EcritureComptable();
-		vEcritureComptable.setJournal(new JournalComptable("AC", "Achat"));
+		vEcritureComptable.setJournal(new JournalComptable("BQ", "Banque"));
 		Date date = new Date();
 		vEcritureComptable.setDate(date);
 		vEcritureComptable.setLibelle("Libelle");
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
 		String annee = sdf.format(vEcritureComptable.getDate());
-		vEcritureComptable.setReference(vEcritureComptable.getJournal().getCode() + "-" + annee + "/00001");
+		vEcritureComptable.setReference(vEcritureComptable.getJournal().getCode() + "-" + annee + "/00005");
 		vEcritureComptable.getListLigneEcriture()
 				.add(new LigneEcritureComptable(new CompteComptable(1), null, new BigDecimal(123), null));
 		vEcritureComptable.getListLigneEcriture()
@@ -91,13 +91,13 @@ public class ComptabiliteManagerIntegrationTest extends BusinessTestCase {
     public void checkEcritureComptableUnitRG3() throws FunctionalException {
 		EcritureComptable vEcritureComptable;
 		vEcritureComptable = new EcritureComptable();
-		vEcritureComptable.setJournal(new JournalComptable("AC", "Achat"));
+		vEcritureComptable.setJournal(new JournalComptable("VE", "Vente"));
 		Date date = new Date();
 		vEcritureComptable.setDate(date);
 		vEcritureComptable.setLibelle("Libelle");
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
 		String annee = sdf.format(vEcritureComptable.getDate());
-		vEcritureComptable.setReference(vEcritureComptable.getJournal().getCode() + "-" + annee + "/00001");
+		vEcritureComptable.setReference(vEcritureComptable.getJournal().getCode() + "-" + annee + "/00002");
 		vEcritureComptable.getListLigneEcriture()
 				.add(new LigneEcritureComptable(new CompteComptable(1), null, new BigDecimal(123), null));
 		vEcritureComptable.getListLigneEcriture()
