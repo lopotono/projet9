@@ -14,6 +14,7 @@ import com.dummy.myerp.model.bean.comptabilite.EcritureComptable;
 import com.dummy.myerp.model.bean.comptabilite.JournalComptable;
 import com.dummy.myerp.model.bean.comptabilite.LigneEcritureComptable;
 import com.dummy.myerp.technical.exception.FunctionalException;
+import com.dummy.myerp.technical.exception.NotFoundException;
 
 public class ComptabiliteManagerIntegrationTest extends BusinessTestCase {
 
@@ -109,9 +110,8 @@ public class ComptabiliteManagerIntegrationTest extends BusinessTestCase {
 	public void checkEcritureComptableContextRG6() throws FunctionalException {
 		EcritureComptable vEcritureComptable;
 		vEcritureComptable = new EcritureComptable();
-		vEcritureComptable.setId(0);
-		vEcritureComptable.setReference("VE-2016/00002");
-		getBusinessProxy().getComptabiliteManager().checkEcritureComptableUnit(vEcritureComptable);
+		vEcritureComptable.setReference("VE-2016/00001");
+		getBusinessProxy().getComptabiliteManager().checkEcritureComptableContext(vEcritureComptable);
 	}
 
 	@Test
