@@ -27,15 +27,15 @@ public class CompteComptableTest {
 
 	@Test
 	public void testGetByNumero() {
-		/*CompteComptable vCompte = new CompteComptable();
+		//CompteComptable vCompte = new CompteComptable();
 
-		List<Integer> pList = new ArrayList<Integer>();
-		Integer vNumero = 401;
+		vList = new ArrayList<>(0);
+		/*Integer vNumero = 401;
 		vCompte.setNumero(vNumero);
-		pList.add(vNumero);
+		pList.add(vNumero);*/
 
-		Assert.assertEquals(vNumero, vCompte.getNumero());*/
-		Assert.assertEquals(CompteComptable.getByNumero(vList, 401), vList.get(1));
+		//Assert.assertEquals(vNumero, vCompte.getNumero());
+		Assert.assertEquals(CompteComptable.getByNumero(vList, 401), vList.get(0));
 	}
 
 }
