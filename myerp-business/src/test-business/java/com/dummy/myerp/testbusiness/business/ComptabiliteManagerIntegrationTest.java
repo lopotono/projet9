@@ -109,7 +109,7 @@ public class ComptabiliteManagerIntegrationTest extends BusinessTestCase {
 	public void checkEcritureComptableContextRG6() throws FunctionalException {
 		EcritureComptable vEcritureComptable;
 		vEcritureComptable = new EcritureComptable();
-		vEcritureComptable.setReference("AC-2016/00001");
+		vEcritureComptable.setReference("AC-2016/00002");
 		getBusinessProxy().getComptabiliteManager().checkEcritureComptableUnit(vEcritureComptable);
 	}
 
