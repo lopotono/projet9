@@ -104,6 +104,14 @@ public class ComptabiliteManagerIntegrationTest extends BusinessTestCase {
 				.add(new LigneEcritureComptable(new CompteComptable(2), null, null, new BigDecimal(123)));
 		getBusinessProxy().getComptabiliteManager().checkEcritureComptableUnit(vEcritureComptable);
     }
+	
+	@Test
+	public void checkEcritureComptableContextRG6() throws FunctionalException {
+		EcritureComptable vEcritureComptable;
+		vEcritureComptable = new EcritureComptable();
+		vEcritureComptable.setReference("AC-2016/00001");
+		getBusinessProxy().getComptabiliteManager().checkEcritureComptableUnit(vEcritureComptable);
+	}
 
 	@Test
 	public void insertEcritureComptable() throws FunctionalException, ParseException {
