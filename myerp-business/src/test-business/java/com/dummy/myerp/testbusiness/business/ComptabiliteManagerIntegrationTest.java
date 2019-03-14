@@ -110,7 +110,7 @@ public class ComptabiliteManagerIntegrationTest extends BusinessTestCase {
 		EcritureComptable vEcritureComptable;
 		vEcritureComptable = new EcritureComptable();
 		vEcritureComptable.setId(0);
-		vEcritureComptable.setReference("AC-2016/00001");
+		vEcritureComptable.setReference("VE-2016/00002");
 		getBusinessProxy().getComptabiliteManager().checkEcritureComptableUnit(vEcritureComptable);
 	}
 
