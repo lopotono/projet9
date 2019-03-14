@@ -29,7 +29,7 @@ public class CompteComptableTest {
 	public void testGetByNumero() {
 		//CompteComptable vCompte = new CompteComptable();
 
-		vList = new ArrayList<>(0);
+		vList = new ArrayList<>();
 		/*Integer vNumero = 401;
 		vCompte.setNumero(vNumero);
 		pList.add(vNumero);*/
