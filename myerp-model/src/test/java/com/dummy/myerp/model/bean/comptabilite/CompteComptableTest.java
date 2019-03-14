@@ -32,7 +32,7 @@ public class CompteComptableTest {
 		vCompte.setNumero(vNumero);
 		pList.add(vNumero);*/
 		//Assert.assertEquals(vNumero, vCompte.getNumero());
-		Assert.assertEquals(CompteComptable.getByNumero(vList, 401), vList);
+		Assert.assertEquals(CompteComptable.getByNumero(vList, 401), vList.get(7));
 	}
 
 }
