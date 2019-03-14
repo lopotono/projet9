@@ -9,7 +9,7 @@ import org.junit.Test;
 public class CompteComptableTest {
 	
 	private static List<CompteComptable> vList;
-
+	
 	@Test
 	public void testToString() {
 		CompteComptable vCompte = new CompteComptable();
@@ -35,7 +35,7 @@ public class CompteComptableTest {
 		pList.add(vNumero);
 
 		Assert.assertEquals(vNumero, vCompte.getNumero());*/
-		Assert.assertEquals(CompteComptable.getByNumero(vList, 401), vList.get(0));
+		Assert.assertEquals(CompteComptable.getByNumero(vList, 401), vList.get(1));
 	}
 
 }
