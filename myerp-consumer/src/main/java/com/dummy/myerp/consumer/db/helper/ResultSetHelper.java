@@ -36,7 +36,7 @@ public abstract class ResultSetHelper {
         Integer vRetour = null;
         int vInt = pRS.getInt(pColName);
         if (!pRS.wasNull()) {
-            vRetour = vInt;
+            vRetour = new Integer(vInt);
         }
         return vRetour;
     }
@@ -54,7 +54,7 @@ public abstract class ResultSetHelper {
         Long vRetour = null;
         Long vLong = pRS.getLong(pColName);
         if (!pRS.wasNull()) {
-            vRetour = vLong;
+            vRetour = new Long(vLong);
         }
         return vRetour;
     }
