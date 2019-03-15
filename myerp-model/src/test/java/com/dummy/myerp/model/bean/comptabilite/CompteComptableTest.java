@@ -25,14 +25,14 @@ public class CompteComptableTest {
 
 	@Test
 	public void testGetByNumero() {
-		//CompteComptable vCompte = new CompteComptable();
+		CompteComptable vCompte = new CompteComptable();
 
 		List<CompteComptable> vList = new ArrayList<>();
-		/*Integer vNumero = 401;
+		Integer vNumero = 401;
 		vCompte.setNumero(vNumero);
-		pList.add(vNumero);*/
+		//pList.add(vNumero);
 		//Assert.assertEquals(vNumero, vCompte.getNumero());
-		Assert.assertEquals(CompteComptable.getByNumero(vList, 401), vList.get(7));
+		Assert.assertEquals(CompteComptable.getByNumero(vList, vNumero), vNumero);
 	}
 
 }
