@@ -7,7 +7,9 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class CompteComptableTest {
-		
+	
+	private static List<CompteComptable> vList;
+			
 	@Test
 	public void testToString() {
 		CompteComptable vCompte = new CompteComptable();
@@ -25,14 +27,15 @@ public class CompteComptableTest {
 
 	@Test
 	public void testGetByNumero() {
-		CompteComptable vCompte = new CompteComptable();
-
+		/*CompteComptable vCompte = new CompteComptable();
 		List<CompteComptable> vList = new ArrayList<>();
 		Integer vNumero = 401;
 		vCompte.setNumero(vNumero);
-		//pList.add(vNumero);
-		//Assert.assertEquals(vNumero, vCompte.getNumero());
-		Assert.assertEquals(CompteComptable.getByNumero(vList, vNumero), vNumero);
+		pList.add(vNumero);
+		Assert.assertEquals(vNumero, vCompte.getNumero());*/
+		vList = new ArrayList<>();
+		vList.add(new CompteComptable(401, "Fournisseurs"));
+		Assert.assertEquals(CompteComptable.getByNumero(vList, 401), vList.get(0));
 	}
 
 }
