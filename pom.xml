@@ -107,7 +107,7 @@
 			<id>test-consumer</id>
 		</profile>
 
-		<!-- Profile sonar -->
+		<!-- Profile Sonar -->
 		<profile>
 			<id>sonar</id>
 			<activation>
